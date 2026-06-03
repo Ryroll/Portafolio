@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <!-- TEXTO -->
+            <div class="hero-text">
+
+                <span class="hero-badge">
+                    Desarrollador Web Intermedio
+                </span>
+
+                <h1>
+                    Hola Mundo!, soy
+                    <span>Randall Valdes</span>
+                </h1>
+
+                <p class="hero-description">
+                    Desarrollador web de nivel intermedio en
+                    Python, Django y gestión de datos.
+                </p>
+
+                <p class="hero-extra">
+                    Me enfoco en crear webs modernas,
+                    funcionales y escalables con un diseño limpio
+                    para una buena experiencia del usuario.
+                </p>
+
+                <!-- BOTONES -->
+                <div class="hero-buttons">
+
+                    <a
+                        href="/proyectos/"
+                        class="btn-custom"
+                    >
+                        Ver Proyectos
+                    </a>
+
+                    <a
+                        href="/media/cv/CV R.Valdes.pdf"
+                        class="btn-custom"
+                        download
+                    >
+                        Descargar CV
+                    </a>
+
+                </div>
+
+                <!-- LINKS -->
+                <div class="links-section">
+
+                    <h3>
+                        Links
+                    </h3>
+
+                    <div class="links-buttons">
+
+                        <a
+                            href="https://github.com/Ryroll"
+                            class="btn-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/randall-steven-vald%C3%A9s-v%C3%A1squez-099582392/"
+                            class="btn-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FOTO -->
+            <div class="hero-image">
+
+                <img
+                    src="/static/img/foto_perfil.jpg"
+                    alt="Randall Valdes"
+                >
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</section>
+
+{% endblock %}

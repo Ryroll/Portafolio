@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <!-- TEXTO -->
+            <div class="hero-text">
+
+                <h1>
+                    Aquí podrás encontrar mis
+                    <span>herramientas y tecnologías que he utilizado.</span>
+                </h1>
+
+                <p class="hero-description">
+                    A lo largo de mi carrera como desarrollador web,
+                    he utilizado una variedad de herramientas y tecnologías
+                    para crear aplicaciones web.
+                    Estas herramientas me han permitido desarrollar proyectos
+                    eficientes, brindando una experiencia de usuario satisfactoria.
+                </p>
+
+            </div>
+
+            <div class="hero-image">
+
+                <img
+                    src="{% static 'img/herramientas.jpg' %}"
+                    alt="Imagen Herramientas"
+                >
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="grid">
+
+        {% for herramienta in herramientas %}
+
+        <div class="card-custom item-card">
+
+            {% if herramienta.icono %}
+
+            <img
+                src="{{ herramienta.icono.url }}"
+                alt="{{ herramienta.nombre }}"
+                class="item-image"
+            >
+            {% endif %}
+
+            <h3 class="item-title">
+                {{ herramienta.nombre }}
+            </h3>
+
+            <h5 class="item-subtitle">
+                    Tipo:
+                {{ herramienta.tipo }}
+            </h5>
+
+            <h5 class="item-subtitle">
+                    Nivel de dominio:
+                    {{ herramienta.nivel_dominio }}
+            </h5>
+
+            <p class="item-description short-text">
+
+                {{ herramienta.descripcion }}
+
+            </p>
+
+            <button class="btn-link ver-mas-btn">
+
+                Ver más
+
+            </button>
+
+        </div>
+
+        {% empty %}
+
+        <div class="card-custom item-card">
+
+            <h3 class="item-title">
+                No hay herramientas registradas.
+            </h3>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

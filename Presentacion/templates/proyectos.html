@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <!-- TEXTO -->
+            <div class="hero-text">
+
+                <h1>
+                    Aquí podrás encontrar mis
+                    <span>proyectos y trabajos realizados.</span>
+                </h1>
+
+                <p class="hero-description">
+                    A lo largo de mi carrera como desarrollador web,
+                    he tenido la oportunidad de trabajar en diversos
+                    proyectos, cada uno con sus propios desafíos y aprendizajes.
+                    Estos proyectos han sido una parte fundamental de mi desarrollo
+                    profesional, permitiéndome aplicar mis habilidades y conocimientos
+                    para crear soluciones efectivas y funcionales.
+                </p>
+
+            </div>
+
+            <div class="hero-image">
+
+                <img
+                    src="{% static 'img/proyecto.avif' %}"
+                    alt="Imagen Proyecto"
+                >
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="grid">
+
+        {% for proyecto in proyectos %}
+
+        <div class="card-custom item-card">
+
+            {% if proyecto.imagen %}
+
+            <img
+                src="{{ proyecto.imagen.url }}"
+                alt="{{ proyecto.nombre }}"
+                class="item-image"
+            >
+            {% endif %}
+
+            <h3 class="item-title">
+                {{ proyecto.nombre }}
+            </h3>
+
+            <h5 class="item-subtitle">
+                    Categoría:
+                {{ proyecto.categoria }}
+            </h5>
+
+            <div class="item-description">
+
+                <p class="item-description short-text">
+
+                    {{ proyecto.descripcion }}
+
+                </p>
+
+                <button class="btn-link ver-mas-btn">
+
+                    Ver más
+
+                </button>
+
+            </div>
+
+            <div class="info-section">
+                {% if proyecto.github_url %}
+
+                    <a
+                        href="{{ proyecto.github_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-custom" >
+                        GitHub
+                    </a>
+                    
+                {% endif %}
+
+                {% if proyecto.demo_url %}
+
+                    <a
+                        href="{{ proyecto.demo_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-custom">
+                        Ver Proyecto
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="card-custom item-card">
+
+            <h3 class="item-title">
+                No hay proyectos registrados.
+            </h3>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

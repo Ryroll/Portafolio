@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>
+            {% block title %}
+                Randall Valdes | Portafolio
+            {% endblock %}
+        </title>
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    </head>
+
+    <body>
+
+        <!-- NAVBAR -->
+        <nav class="navbar-custom">
+
+            <div class="container nav-container">
+
+                <a href="/" class="logo">
+                    Randall <span>Desarrollador WEB</span>
+                </a>
+
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="/">Inicio</a>
+                    </li>
+
+                    <li>
+                        <a href="/sobre-mi">Sobre Mí</a>
+                    </li>
+
+                    <li>
+                        <a href="/proyectos">Proyectos</a>
+                    </li>
+
+                    <li>
+                        <a href="/experiencia">Experiencia</a>
+                    </li>
+
+                    <li>
+                        <a href="/herramientas">Herramientas</a>
+                    </li>
+
+                    <li>
+                        <a href="/certificaciones">Certificaciones</a>
+                    </li>
+
+                    <li>
+                        <a href="/contacto">Contacto</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!-- CONTENIDO -->
+        <main class="main-content">
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer-custom">
+
+            <div class="container">
+
+                <h3>
+                    Randall Valdes
+                </h3>
+
+                <p>
+                    Desarrollador Web | Django |
+                </p>
+
+                <p class="footer-copy">
+                    © 2026 - Reserved Rights
+                </p>
+
+            </div>
+
+        </footer>
+
+        <!-- JS -->
+        <script src="{% static 'js/main.js' %}"></script>
+
+    </body>
+
+</html>

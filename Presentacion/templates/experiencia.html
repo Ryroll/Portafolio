@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <!-- TEXTO -->
+            <div class="hero-text">
+
+                <h1>
+                    Aquí podrás encontrar mis
+                    <span>experiencias laborales.</span>
+                </h1>
+
+                <p class="hero-description">
+                    A lo largo de mi carrera,
+                    he tenido la oportunidad de trabajar en diversas
+                    empresas, adquiriendo valiosa experiencia.
+                </p>
+
+            </div>
+
+            <div class="hero-image">
+
+                <img
+                    src="{% static 'img/Experiencia.avif' %}"
+                    alt="Imagen Experiencias Laborales"
+                >
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="grid">
+
+        {% for experiencia in experiencias %}
+
+        <div class="card-custom item-card">
+
+            {% if experiencia.logo_empresa %}
+            <img
+                src="{{ experiencia.logo_empresa.url }}"
+                alt="{{ experiencia.empresa }}"
+                class="item-image"
+            >
+            {% endif %}
+
+            <h3 class="item-title">
+                    Nombre de la Empresa:
+                {{ experiencia.empresa }}
+            </h3>
+
+            <h5 class="item-subtitle">
+                    Cargo:
+                {{ experiencia.cargo }}
+            </h5>
+
+            <h5 class="item-subtitle">
+                    Duración:
+                {{ experiencia.fecha_inicio }} - {{ experiencia.fecha_fin }}
+            </h5>
+
+            <p class="item-description short-text">
+
+                {{ experiencia.descripcion }}
+
+            </p>
+
+            <button class="btn-link ver-mas-btn">
+
+                Ver más
+
+            </button>
+            
+            {% if experiencia.url %}
+            <a
+                href="{{ experiencia.url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-custom"
+            >
+                Ver Experiencia
+            </a>
+            {% endif %}
+
+        </div>
+
+        {% empty %}
+
+        <div class="card-custom item-card">
+
+            <h3 class="item-title">
+                No hay experiencias registradas.
+            </h3>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

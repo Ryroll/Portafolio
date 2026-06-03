@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+
+                <h1>
+                    Aquí podrás encontrar mis
+                    <span>certificaciones.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Cursos, certificaciones y credenciales que he
+                    obtenido durante mi formación profesional.
+                </p>
+
+            </div>
+
+            <div class="hero-image">
+
+                <img
+                    src="{% static 'img/certificaciones.avif' %}"
+                    alt="Imagen Certificaciones"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="grid">
+
+        {% for certificacion in certificaciones %}
+
+        <div class="card-custom item-card">
+
+            {% if certificacion.imagen %}
+            <img
+                src="{{ certificacion.imagen.url }}"
+                alt="{{ certificacion.nombre }}"
+                class="item-image"
+            >
+            {% endif %}
+
+            <h3 class="item-title">
+                {{ certificacion.nombre }}
+            </h3>
+
+            <h5 class="item-subtitle">
+                {{ certificacion.institucion }}
+            </h5>
+
+            <p class="item-meta">
+                {{ certificacion.fecha }}
+            </p>
+
+            <p class="item-description">
+                {{ certificacion.descripcion }}
+            </p>
+
+            {% if certificacion.url %}
+            <a
+                href="{{ certificacion.url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-custom"
+            >
+                Ver Certificado
+            </a>
+            {% endif %}
+
+        </div>
+
+        {% empty %}
+
+        <div class="card-custom item-card">
+
+            <h3 class="item-title">
+                No hay certificaciones registradas.
+            </h3>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
