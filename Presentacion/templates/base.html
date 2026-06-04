@@ -32,45 +32,65 @@
     <body>
 
         <!-- NAVBAR -->
-        <nav class="navbar-custom">
+        <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
 
-            <div class="container nav-container">
+            <div class="container">
 
-                <a href="/" class="logo">
-                    Randall <span>Desarrollador WEB</span>
+                <a href="/" class="logo navbar-brand">
+                    Randall
+                    <span>Desarrollador WEB</span>
                 </a>
 
-                <ul class="nav-links">
+                <!-- Botón hamburguesa -->
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal"
+                    aria-expanded="false"
+                    aria-label="Abrir menú">
 
-                    <li>
-                        <a href="/">Inicio</a>
-                    </li>
+                    <span class="navbar-toggler-icon"></span>
 
-                    <li>
-                        <a href="/sobre-mi">Sobre Mí</a>
-                    </li>
+                </button>
 
-                    <li>
-                        <a href="/proyectos">Proyectos</a>
-                    </li>
+                <!-- Menú -->
+                <div class="collapse navbar-collapse" id="menuPrincipal">
 
-                    <li>
-                        <a href="/experiencia">Experiencia</a>
-                    </li>
+                    <ul class="navbar-nav ms-auto">
 
-                    <li>
-                        <a href="/herramientas">Herramientas</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Inicio</a>
+                        </li>
 
-                    <li>
-                        <a href="/certificaciones">Certificaciones</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/sobre-mi">Sobre Mí</a>
+                        </li>
 
-                    <li>
-                        <a href="/contacto">Contacto</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/proyectos">Proyectos</a>
+                        </li>
 
-                </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/experiencia">Experiencia</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/herramientas">Herramientas</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/certificaciones">Certificaciones</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contacto">Contacto</a>
+                        </li>
+
+                    </ul>
+
+                </div>
 
             </div>
 
@@ -106,6 +126,8 @@
         </footer>
 
         <!-- JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
         <script src="{% static 'js/main.js' %}"></script>
 
     </body>

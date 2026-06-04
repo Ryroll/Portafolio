@@ -669,3 +669,32 @@ main {
     }
 
 }
+
+/* Botón hamburguesa */
+.navbar-toggler {
+    border: none;
+    box-shadow: none !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Color del icono hamburguesa */
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* Menú móvil */
+@media (max-width: 991px) {
+
+    .navbar-nav {
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 12px 0;
+    }
+
+}
