@@ -1,145 +1,153 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
+<!-- SECCIÓN HERO -->
 <section class="hero">
 
     <div class="container">
 
         <div class="hero-content">
 
-            <!-- TEXTO -->
             <div class="hero-text">
 
                 <h1>
+
                     Sobre
-                    <span>mi.</span>
+                    <span>mí.</span>
+
                 </h1>
 
                 <p class="hero-description">
-                    Aquí podrás conocerme un poco más a fondo y descubrir mis habilidades.
+                    Aquí podrás conocerme un poco más a fondo, descubrir mi enfoque profesional y revisar mis habilidades técnicas.
                 </p>
-                
+
             </div>
 
             <div class="hero-image">
 
                 {% if perfil.foto %}
-                    
-                    <img
-                        src="{{ perfil.foto.url }}"
-                        alt="{{ perfil.nombre }}"
-                        class="item-image">
+
+                <img src="{{ perfil.foto.url }}" alt="{{ perfil.nombre }}">
+
+                {% else %}
+
+                <img src="{% static 'img/foto_perfil.jpeg' %}" alt="Randall Valdes">
+
                 {% endif %}
 
             </div>
 
         </div>
-        
+
     </div>
 
 </section>
 
-<section class="container">
+<!-- SECCIÓN DE DETALLE PROFESIONAL -->
+<section class="container mb-5">
 
-    <div class="grid">
-
-        <div class="card-custom item-card">
+    <div class="card-custom w-100 p-4 p-md-5">
+        
+        <!-- BIOGRAFÍA PRINCIPAL -->
+        <div class="pb-4">
+            <h3 class="item-title mb-3">
+                {{ perfil.nombre }}
+            </h3>
             
-            <div class="info-section">
+            <p class="item-description short-text">
+                {{ perfil.descripcion }}
+            </p>
+            <button class="btn-link ver-mas-btn py-1 px-3 mt-1 fs-6">
+                Ver más
+            </button>
+        </div>
 
-                <h3 class="item-title">
-                    {{ perfil.nombre }}
-                </h3>
+        <!-- CONTENEDOR DE SKILLS -->
+        <div class="info-section">
 
-                <p class="item-description short-text">
+            <p class="item-description fw-bold mb-3">
+                Algunas de mis habilidades incluyen:
+            </p>
 
-                    {{ perfil.descripcion }}
-
-                </p>
-
-                <button class="btn-link ver-mas-btn">
-
-                    Ver más
-
-                </button>
-            
-            </div>
-
-            <div class="skills-container">
-
-                <p class="item-description">
-                    Algunas de mis habilidades incluyen:
-                </p>
+            <div class="skills-container m-0">
 
                 {% for skill in skills %}
 
-                    <span class="hero-badge">
-                        {{ skill.nombre }}
-                    </span>
+                <span class="skill-badge">
+                    {{ skill.nombre }}
+                </span>
 
                 {% endfor %}
 
             </div>
 
-            <div class="info-section">
+        </div>
 
-                {% if perfil.cv %}
+        <!-- ENLACES DE DESCARGA Y REDES -->
+        <div class="row g-4 mt-2">
+            
+            {% if perfil.cv %}
 
-                    <a
-                        href="{{ perfil.cv.url }}"
-                        class="btn-custom"
-                        download>
+            <div class="col-12 col-md-4">
+
+                <div class="info-section h-100 mt-0">
+
+                    <a href="{{ perfil.cv.url }}" class="btn-custom w-100 text-center mb-3" download>
                         Descargar CV
                     </a>
 
-                    <p class="item-description">
-                        Puedes descargar mi CV para obtener más detalles sobre mi experiencia, habilidades y formación académica.
+                    <p class="item-description small text-muted">
+                        Obtén más detalles sobre mi experiencia, habilidades y formación académica descargando mi currículum en PDF.
                     </p>
 
-                {% endif %}
-            
+                </div>
+
             </div>
 
-            <div class="info-section">
+            {% endif %}
 
-                {% if perfil.github %}
+            {% if perfil.github %}
 
-                    <a
-                        href="{{ perfil.github }}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn-custom" >
+            <div class="col-12 col-md-4">
+
+                <div class="info-section h-100 mt-0">
+
+                    <a href="{{ perfil.github }}" target="_blank" rel="noopener noreferrer" class="btn-custom w-100 text-center mb-3">
                         GitHub
                     </a>
 
-                    <p class="item-description">
-                        Puedes encontrar más información sobre mis proyectos y habilidades en mi perfil de GitHub, donde comparto mis trabajos y colaboraciones.
+                    <p class="item-description small text-muted">
+                        Revisa mis repositorios de código abierto, proyectos personales y contribuciones directamente en mi perfil de desarrollo.
                     </p>
 
-                {% endif %}
-            
+                </div>
+
             </div>
 
-            <div class="info-section">
+            {% endif %}
 
-                {% if perfil.linkedin %}
+            {% if perfil.linkedin %}
 
-                    <a
-                        href="{{ perfil.linkedin }}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn-custom" >
+            <div class="col-12 col-md-4">
+
+                <div class="info-section h-100 mt-0">
+
+                    <a href="{{ perfil.linkedin }}" target="_blank" rel="noopener noreferrer" class="btn-custom w-100 text-center mb-3">
                         LinkedIn
                     </a>
 
-                    <p class="item-description">
-                        Puedes encontrame en LinkedIn.
+                    <p class="item-description small text-muted">
+                        Conectemos a nivel profesional. Visita mi perfil para revisar validaciones, recomendaciones y trayectoria en el sector técnico.
                     </p>
-                        
-                {% endif %}
+
+                </div>
 
             </div>
+
+            {% endif %}
 
         </div>
 

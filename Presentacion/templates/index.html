@@ -4,79 +4,60 @@
 
 {% block content %}
 
+<!-- SECCIÓN HERO PRINCIPAL -->
 <section class="hero">
 
     <div class="container">
 
         <div class="hero-content">
 
-            <!-- TEXTO -->
+            <!-- CONTENIDO DE TEXTO -->
             <div class="hero-text">
-
+                
                 <span class="hero-badge">
                     Desarrollador Web Intermedio
                 </span>
 
                 <h1>
+
                     Hola Mundo!, soy
                     <span>Randall Valdes</span>
+
                 </h1>
 
                 <p class="hero-description">
-                    Desarrollador web de nivel intermedio en
-                    Python, Django y gestión de datos.
+                    Desarrollador web especializado en Python, Django y gestión de datos.
                 </p>
 
                 <p class="hero-extra">
-                    Me enfoco en crear webs modernas,
-                    funcionales y escalables con un diseño limpio
-                    para una buena experiencia del usuario.
+                    Me enfoco en crear aplicaciones web modernas, funcionales y escalables con un diseño limpio para garantizar una óptima experiencia de usuario.
                 </p>
 
-                <!-- BOTONES -->
+                <!-- BOTONES DE ACCIÓN PRINCIPAL -->
                 <div class="hero-buttons">
 
-                    <a
-                        href="/proyectos/"
-                        class="btn-custom"
-                    >
+                    <a href="/proyectos/" class="btn-custom">
                         Ver Proyectos
                     </a>
 
-                    <a
-                        href="/media/cv/CV R.Valdes.pdf"
-                        class="btn-custom"
-                        download
-                    >
+                    <a href="/media/cv/CV R.Valdes.pdf" class="btn-custom" download>
                         Descargar CV
                     </a>
 
                 </div>
 
-                <!-- LINKS -->
+                <!-- ACCESOS DIRECTOS / LINKS -->
                 <div class="links-section">
 
-                    <h3>
-                        Links
-                    </h3>
+                    <h3>Links</h3>
 
                     <div class="links-buttons">
 
-                        <a
-                            href="https://github.com/Ryroll"
-                            class="btn-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <a href="https://github.com/Ryroll" class="btn-link" target="_blank" rel="noopener noreferrer">
                             GitHub
                         </a>
 
-                        <a
-                            href="https://www.linkedin.com/in/randall-steven-vald%C3%A9s-v%C3%A1squez-099582392/"
-                            class="btn-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <a href="https://www.linkedin.com/in/randall-steven-vald%C3%A9s-v%C3%A1squez-099582392/" class="btn-link" target="_blank" rel="noopener noreferrer">
                             LinkedIn
                         </a>
 
@@ -86,18 +67,15 @@
 
             </div>
 
-            <!-- FOTO -->
+            <!-- FOTO DE PERFIL -->
             <div class="hero-image">
 
-                <img
-                    src="{% static 'img/foto_perfil.jpeg' %}"
-                    alt="Randall Valdes"
-                >
+                <img src="{% static 'img/foto_perfil.jpeg' %}" alt="Randall Valdes">
 
             </div>
 
         </div>
-        
+
     </div>
 
 </section>

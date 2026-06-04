@@ -3,47 +3,40 @@
 {% load static %}
 
 {% block content %}
-
+<!-- SECCIÓN HERO -->
 <section class="hero">
 
     <div class="container">
 
         <div class="hero-content">
 
-            <!-- TEXTO -->
             <div class="hero-text">
 
                 <h1>
                     Aquí podrás encontrar mis
-                    <span>herramientas y tecnologías que he utilizado.</span>
+                    <span>herramientas y tecnologías.</span>
                 </h1>
 
                 <p class="hero-description">
-                    A lo largo de mi carrera como desarrollador web,
-                    he utilizado una variedad de herramientas y tecnologías
-                    para crear aplicaciones web.
-                    Estas herramientas me han permitido desarrollar proyectos
-                    eficientes, brindando una experiencia de usuario satisfactoria.
+                    A lo largo de mi carrera como desarrollador web, he utilizado una variedad de herramientas y tecnologías para crear aplicaciones eficientes, escalables y con una óptima experiencia de usuario.
                 </p>
 
             </div>
 
             <div class="hero-image">
 
-                <img
-                    src="{% static 'img/Herramientas.jpg' %}"
-                    alt="Imagen Herramientas"
-                >
+                <img src="{% static 'img/Herramientas.jpg' %}" alt="Imagen Herramientas">
 
             </div>
 
         </div>
-        
+
     </div>
 
 </section>
 
-<section class="container">
+<!-- SECCIÓN DE GRID DE TECNOLOGÍAS -->
+<section class="container mb-5">
 
     <div class="grid">
 
@@ -51,49 +44,50 @@
 
         <div class="card-custom item-card">
 
+            <!-- Icono centrado y adaptado para logos de software -->
             {% if herramienta.icono %}
 
-            <img
-                src="{{ herramienta.icono.url }}"
-                alt="{{ herramienta.nombre }}"
-                class="item-image"
-            >
+            <div class="text-center mb-4">
+
+                <img src="{{ herramienta.icono.url }}" alt="{{ herramienta.nombre }}" class="item-image style-icon">
+
+            </div>
+
             {% endif %}
 
-            <h3 class="item-title">
-                {{ herramienta.nombre }}
-            </h3>
+            <!-- Contenedor flexible principal -->
+            <div class="flex-grow-1">
 
-            <h5 class="item-subtitle">
-                    Tipo:
-                {{ herramienta.tipo }}
-            </h5>
+                <h3 class="item-title">
+                    {{ herramienta.nombre }}
+                </h3>
 
-            <h5 class="item-subtitle">
-                    Nivel de dominio:
-                    {{ herramienta.nivel_dominio }}
-            </h5>
+                <h5 class="item-subtitle text-muted">
+                    Categoría: {{ herramienta.tipo }}
+                </h5>
 
-            <p class="item-description short-text">
+                <p class="item-meta mb-3">
+                    Dominio: {{ herramienta.nivel_dominio }}
+                </p>
+                
+                <p class="item-description short-text">
+                    {{ herramienta.descripcion }}
+                </p>
 
-                {{ herramienta.descripcion }}
+                <button class="btn-link ver-mas-btn py-1 px-3 mt-1 fs-6">
+                    Ver más
+                </button>
 
-            </p>
-
-            <button class="btn-link ver-mas-btn">
-
-                Ver más
-
-            </button>
+            </div>
 
         </div>
 
         {% empty %}
+        <!-- Estado vacío a ancho completo -->
+        <div class="card-custom item-card text-center grid-col-full">
 
-        <div class="card-custom item-card">
-
-            <h3 class="item-title">
-                No hay herramientas registradas.
+            <h3 class="item-title m-0">
+                No hay herramientas registradas por el momento.
             </h3>
 
         </div>

@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<!-- SECCIÓN HERO -->
 <section class="hero">
 
     <div class="container">
@@ -18,19 +19,13 @@
                 </h1>
 
                 <p class="hero-description">
-                    Cursos, certificaciones y credenciales que he
-                    obtenido durante mi formación profesional.
+                    Cursos, certificaciones y credenciales que he obtenido durante mi formación profesional.
                 </p>
 
             </div>
 
             <div class="hero-image">
-
-                <img
-                    src="{% static 'img/Certificaciones.avif' %}"
-                    alt="Imagen Certificaciones"
-                >
-
+                <img src="{% static 'img/Certificaciones.avif' %}" alt="Imagen Certificaciones">
             </div>
 
         </div>
@@ -39,61 +34,65 @@
 
 </section>
 
-<section class="container">
+<!-- SECCIÓN DE CERTIFICACIONES -->
+<section class="container mb-5">
 
     <div class="grid">
 
         {% for certificacion in certificaciones %}
 
         <div class="card-custom item-card">
-
+            
             {% if certificacion.imagen %}
-            <img
-                src="{{ certificacion.imagen.url }}"
-                alt="{{ certificacion.nombre }}"
-                class="item-image"
-            >
+
+            <img src="{{ certificacion.imagen.url }}" alt="{{ certificacion.nombre }}" class="item-image">
+
             {% endif %}
 
-            <h3 class="item-title">
-                {{ certificacion.nombre }}
-            </h3>
+            <!-- Contenedor intermedio para empujar el botón al fondo si es necesario -->
+            <div class="flex-grow-1">
 
-            <h5 class="item-subtitle">
-                {{ certificacion.institucion }}
-            </h5>
+                <h3 class="item-title">
+                    {{ certificacion.nombre }}
+                </h3>
 
-            <p class="item-meta">
-                {{ certificacion.fecha }}
-            </p>
+                <h5 class="item-subtitle text-muted">
+                    {{ certificacion.institucion }}
+                </h5>
 
-            <p class="item-description">
-                {{ certificacion.descripcion }}
-            </p>
+                <p class="item-meta">
+                    {{ certificacion.fecha }}
+                </p>
+
+                <p class="item-description">
+                    {{ certificacion.descripcion }}
+                </p>
+
+            </div>
 
             {% if certificacion.url %}
-            <a
-                href="{{ certificacion.url }}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-custom"
-            >
-                Ver Certificado
-            </a>
+
+            <div class="mt-4">
+
+                <a href="{{ certificacion.url }}" target="_blank" rel="noopener noreferrer" class="btn-custom w-100 text-center">
+                    Ver Certificado
+                </a>
+
+            </div>
+
             {% endif %}
 
         </div>
 
         {% empty %}
+        <!-- Caso sin certificaciones: ocupa todo el ancho disponible -->
+        <div class="card-custom item-card text-center grid-col-full">
 
-        <div class="card-custom item-card">
-
-            <h3 class="item-title">
-                No hay certificaciones registradas.
+            <h3 class="item-title m-0">
+                No hay certificaciones registradas por el momento.
             </h3>
 
         </div>
-
         {% endfor %}
 
     </div>
