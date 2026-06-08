@@ -32,7 +32,11 @@
 
                 {% if perfil.foto %}
 
-                <img src="{{ perfil.foto.url }}" alt="{{ perfil.nombre }}">
+                <img
+                    src="{{ perfil.foto.url }}"
+                    alt="{{ perfil.nombre }}"
+                    loading="lazy"
+                    decoding="async">
 
                 {% else %}
 

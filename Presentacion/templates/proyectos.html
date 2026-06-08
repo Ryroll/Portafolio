@@ -50,7 +50,12 @@
 
             {% if proyecto.imagen %}
 
-            <img src="{{ proyecto.imagen.url }}" alt="{{ proyecto.nombre }}" class="item-image">
+            <img
+                src="{{ proyecto.imagen.url }}"
+                alt="{{ proyecto.nombre }}"
+                class="item-image"
+                loading="lazy"
+                decoding="async">
 
             {% endif %}
 

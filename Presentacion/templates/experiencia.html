@@ -48,7 +48,12 @@
 
             {% if experiencia.logo_empresa %}
 
-            <img src="{{ experiencia.logo_empresa.url }}" alt="{{ experiencia.empresa }}" class="item-image">
+            <img
+                src="{{ experiencia.logo_empresa.url }}"
+                alt="{{ experiencia.empresa }}"
+                class="item-image"
+                loading="lazy"
+                decoding="async">
 
             {% endif %}
 

@@ -28,7 +28,7 @@
 
             <div class="hero-image">
 
-                <img src="{% static 'img/Herramientas.jpg' %}" alt="Imagen Herramientas">
+                <img src="{% static 'img/Herramientas.webp' %}" alt="Imagen Herramientas">
 
             </div>
 
@@ -52,7 +52,12 @@
 
             <div class="text-center mb-4">
 
-                <img src="{{ herramienta.icono.url }}" alt="{{ herramienta.nombre }}" class="item-image style-icon">
+                <img
+                    src="{{ herramienta.icono.url }}"
+                    alt="{{ herramienta.nombre }}"
+                    class="item-image style-icon"
+                    loading="lazy"
+                    decoding="async">
 
             </div>
 
