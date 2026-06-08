@@ -31,10 +31,10 @@ DEBUG = os.getenv('DEBUG', 'true').strip().lower() == 'true'
 
 # Dominios permitidos para acceder a la aplicación
 ALLOWED_HOSTS = [
-    'portafolio-vei3.onrender.com/',
-    '.onrender.com', # Permite subdominios de Render automáticamente
-    'localhost',     # Permite pruebas locales
-    '127.0.0.1'      # Permite pruebas locales
+    'portafolio-vei3.onrender.com',
+    '.onrender.com',
+    'localhost',
+    '127.0.0.1'
 ]
 
 
@@ -162,6 +162,7 @@ STORAGES = {
 # 7. CONFIGURACIÓN DE MULTIMEDIA (IMÁGENES SUBIDAS EN CREACIÓN DE MODELOS)
 # ==============================================================================
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 if DEBUG:
     # En desarrollo local las imágenes se guardan en tu propia computadora
@@ -180,11 +181,11 @@ else:
     }
     
     # Credenciales que configurar como Variables de Entorno en el panel de Render
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': os.getenv('df3ffd0jd'),
-        'API_KEY': os.getenv('664182786835353'),
-        'API_SECRET': os.getenv('BuzAySrZRk0Rgsyc0YaikdVztEU'),
-    }
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
 
 
 # ==============================================================================
