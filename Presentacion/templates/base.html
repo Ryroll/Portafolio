@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load compress %}
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,7 +21,7 @@
 
         </title>
 
-        <!-- Bootstrap 5.3.3 (Versión corregida y estable) -->
+        <!-- Bootstrap 5.3.3 -->
         <link href="https://jsdelivr.net" rel="stylesheet">
 
         <!-- Google Fonts -->
@@ -28,7 +30,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
         <!-- CSS Personalizado -->
+         {% compress css %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+         {% endcompress %}
 
     </head>
 
@@ -123,7 +127,9 @@
 
         <!-- JS de Bootstrap -->
         <script src="https://jsdelivr.net"></script>
+        {% compress js %}
         <script src="{% static 'js/main.js' %}"></script>
+        {% endcompress %}
 
     </body>
 

@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const botones=document.querySelectorAll('.ver-mas-btn');botones.forEach(boton=>{boton.addEventListener('click',()=>{const descripcion=boton.previousElementSibling;descripcion.classList.toggle('expanded');boton.textContent=descripcion.classList.contains('expanded')?'Ver menos':'Ver más';});});});;

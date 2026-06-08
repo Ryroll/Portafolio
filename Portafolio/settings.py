@@ -10,41 +10,54 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# ==============================================================================
+# 1. CONFIGURACIÓN DE RUTAS Y ENTORNO
+# ==============================================================================
+
+# Ruta base del proyecto (Portafolio)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# Llave secreta protegida. En Render se debe crear la Variable de Entorno "SECRET_KEY"
 SECRET_KEY = os.getenv(
     'SECRET_KEY',
     'django-insecure-clave-local-desarrollo'
 )
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# Control de depuración. En Render se debe crear la Variable de Entorno "DEBUG" con el valor "False"
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
+# Dominios permitidos para acceder a la aplicación
 ALLOWED_HOSTS = [
-    '.onrender.com',
-    'localhost',
-    '127.0.0.1'
+    '.onrender.com', # Permite subdominios de Render automáticamente
+    'localhost',     # Permite pruebas locales
+    '127.0.0.1'      # Permite pruebas locales
 ]
 
-# Application definition
+
+# ==============================================================================
+# 2. CONFIGURACIÓN DE APLICACIONES (INSTALLED_APPS)
+# ==============================================================================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'Presentacion',
+    'django.contrib.staticfiles', # Manejo nativo de archivos estáticos
+    'Presentacion',               # aplicación local
+    'compressor',                 # Motor de minificación de código CSS/JS
 ]
 
+
+# ==============================================================================
+# 3. INTERMEDIARIOS (MIDDLEWARE)
+# ==============================================================================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Sirve CSS/JS eficientemente en producción
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,10 +68,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Portafolio.urls'
 
+
+# ==============================================================================
+# 4. PLANTILLAS (TEMPLATES)
+# ==============================================================================
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [
+            BASE_DIR / 'templates',
+            BASE_DIR / 'Presentacion' / 'templates', # Escanea correctamente tus vistas locales
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,81 +92,115 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Portafolio.wsgi.application'
 
-# Database
+
+# ==============================================================================
+# 5. BASE DE DATOS E IDIOMA
+# ==============================================================================
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3', # Base de datos local básica
     }
 }
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'es-cl'
 TIME_ZONE = 'America/Santiago'
 USE_I18N = True
 USE_TZ = True
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Static files (CSS, JavaScript, Images)
+
+# ==============================================================================
+# 6. ARCHIVOS ESTÁTICOS Y COMPRESIÓN (DJANGO COMPRESSOR + WHITENOISE)
+# ==============================================================================
+
+# URL con la que el navegador web solicitará los estáticos
 STATIC_URL = 'static/'
+
+# Carpetas de origen donde guardo mis CSS/JS de desarrollo
 STATICFILES_DIRS = [
     BASE_DIR / 'Presentacion' / 'static',
 ]
+
+# Carpeta de destino donde se recopilará todo para producción
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Buscadores de archivos. Permite que Compressor localice qué procesar
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
+
+# Ajustes de Django Compressor
+COMPRESS_OUTPUT_DIR = 'CACHE'
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True # Ejecuta la minificación antes del despliegue mediante comandos
+COMPRESS_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# CORRECCIÓN DE ALMACENAMIENTO PARA DJANGO 4.2+ / 5.0+ (Sustituye a STATICFILES_STORAGE)
+# Combina la compresión de WhiteNoise con los archivos generados por Django Compressor
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
 
 # ==============================================================================
-# CONFIGURACIÓN HÍBRIDA DE MEDIA (LOCAL VS CLOUDINARY GRATUITO EN PRODUCCIÓN)
+# 7. CONFIGURACIÓN DE MULTIMEDIA (IMÁGENES SUBIDAS EN CREACIÓN DE MODELOS)
 # ==============================================================================
 MEDIA_URL = '/media/'
 
 if DEBUG:
+    # En desarrollo local las imágenes se guardan en tu propia computadora
     MEDIA_ROOT = BASE_DIR / 'media'
 else:
+    # En producción (Render) inyectamos Cloudinary para almacenar imágenes perpetuamente
     INSTALLED_APPS.insert(
         INSTALLED_APPS.index('django.contrib.staticfiles') + 1, 
         'cloudinary_storage'
     )
     INSTALLED_APPS.append('cloudinary')
 
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    # Reemplaza el almacenamiento predeterminado de multimedia por Cloudinary
+    STORAGES["default"] = {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    }
     
+    # Credenciales que configurar como Variables de Entorno en el panel de Render
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-        'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-        'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+        'CLOUD_NAME': os.getenv('df3ffd0jd'),
+        'API_KEY': os.getenv('664182786835353'),
+        'API_SECRET': os.getenv('BuzAySrZRk0Rgsyc0YaikdVztEU'),
     }
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ==============================================================================
-# SEGURIDAD DE PRODUCCIÓN CORREGIDA (EVITA BUCLES EN RENDER Y PERMITE LOCAL)
+# 8. SEGURIDAD REFORZADA PARA PRODUCCIÓN
 # ==============================================================================
 if not DEBUG:
-    # Ajustes estrictos para el entorno en vivo en Render
-    SECURE_SSL_REDIRECT = False # Render ya fuerza HTTPS externamente, dejar en True romperá la app
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    # Ajustes estrictos en vivo para Render
+    SECURE_SSL_REDIRECT = False # Dejar en False. Render usa un proxy inverso que ya maneja SSL.
+    SESSION_COOKIE_SECURE = True # Las cookies de sesión viajan solo por HTTPS
+    CSRF_COOKIE_SECURE = True    # El token de seguridad viaja solo por HTTPS
+    
+    # Configuración de HSTS (Fuerza la seguridad SSL en los navegadores)
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 else:
-    # Ajustes permisivos para poder desarrollar en localhost sin certificados SSL
+    # Ajustes permisivos para programar en localhost sin problemas
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
