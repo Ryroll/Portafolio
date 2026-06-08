@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv(
 )
 
 # Control de depuración. En Render se debe crear la Variable de Entorno "DEBUG" con el valor "False"
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'true').strip().lower() == 'true'
 
 # Dominios permitidos para acceder a la aplicación
 ALLOWED_HOSTS = [
