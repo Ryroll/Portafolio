@@ -31,6 +31,7 @@ DEBUG = os.getenv('DEBUG', 'true').strip().lower() == 'true'
 
 # Dominios permitidos para acceder a la aplicación
 ALLOWED_HOSTS = [
+    '://onrender.com',
     '.onrender.com', # Permite subdominios de Render automáticamente
     'localhost',     # Permite pruebas locales
     '127.0.0.1'      # Permite pruebas locales
