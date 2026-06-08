@@ -10,24 +10,9 @@ from .models import (
 )
 
 # INICIO
-def index(request) -> HttpResponse:
 
-    perfil = Perfil.objects.first()
-
-    proyectos_destacados = Proyecto.objects.filter(
-        destacado=True
-    )[:3]
-
-    context = {
-        'perfil': perfil,
-        'proyectos': proyectos_destacados,
-    }
-
-    return django.shortcuts.render(
-        request,
-        'index.html',
-        context
-    )
+def index(request):
+    return HttpResponse("Sitio funcionando")
 
 # PROYECTOS
 def proyectos(request) -> HttpResponse:
