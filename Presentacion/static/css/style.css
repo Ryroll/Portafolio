@@ -320,7 +320,9 @@ main {
 }
 
 .item-subtitle {
+    color: var(--green-primary);
     margin-bottom: 10px;
+
 }
 
 .item-meta {
@@ -436,25 +438,7 @@ main {
         display: block; /* Muestra el botón hamburguesa */
     }
 
-    /* Oculta el menú en móviles por defecto */
-    .nav-links {
-        display: none; 
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: rgba(13, 13, 13, 0.98);
-        padding: 20px;
-        border-bottom: 1px solid var(--border-color);
-        gap: 20px;
-        text-align: center;
-    }
-
-    /* Clase activa para abrir el menú mediante JS */
-    .nav-links.active {
-        display: flex;
-    }
+   
 
     /* Animación básica del botón al abrirse */
     .navbar-toggler.active .navbar-toggler-icon {
@@ -466,4 +450,11 @@ main {
     .navbar-toggler.active .navbar-toggler-icon::after {
         transform: rotate(-45deg) translate(5px, -6px);
     }
+}
+
+/* iconos de contacto */
+.contact-icon {
+    font-size: 3rem;
+    color: var(--green-primary);
+    margin-bottom: 20px;
 }
