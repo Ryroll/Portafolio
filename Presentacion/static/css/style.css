@@ -47,6 +47,7 @@ main {
 =================================== */
 .navbar-custom {
     position: sticky;
+    z-index: 9999 !important;
     top: 0;
     z-index: 1000;
     background-color: rgba(13, 13, 13, 0.95);
@@ -92,6 +93,8 @@ main {
 
 /* Botón hamburguesa oculto por defecto en desktop */
 .navbar-toggler {
+    position: relative;
+    z-index: 10000 !important;
     display: none;
     background: none;
     border: none;
@@ -210,11 +213,17 @@ main {
     margin-top: 20px; /* Esto añade una separacion con el texto superior */
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: var(--shadow-green);
+    cursor: pointer;
+    border: none;
 }
 
 .btn-custom:hover {
     background: var(--green-hover);
     transform: translateY(-3px);
+}
+
+.btn-custom:active {
+    transform: translateY(-1px);
 }
 
 /* ===================================
