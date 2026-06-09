@@ -60,10 +60,10 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
 }
 
 .logo {
+    margin-right: 6rem;
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -75,9 +75,11 @@ main {
 }
 
 .nav-links {
+    white-space: nowrap;
     display: flex;
     list-style: none;
-    gap: 30px;
+    align-items: center;
+    gap: 8px;
 }
 
 .nav-links a {
@@ -93,6 +95,7 @@ main {
 
 /* Botón hamburguesa oculto por defecto en desktop */
 .navbar-toggler {
+    margin-left: auto;
     position: relative;
     z-index: 10000 !important;
     display: none;
