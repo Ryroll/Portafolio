@@ -1,0 +1,35 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Respaldos
+respaldos/
+backups/
+
+# Base de datos SQLite
+*.sqlite3
+*.sqlite3-journal
+
+# Variables de entorno y credenciales
+.env
+.env.*
+!.env.example
+
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+*.log
+
+# Archivos generados por Django
+staticfiles/
+
+# Archivos multimedia locales
+media/
+
+# Configuración del editor
+.vscode/
+
+# Archivos de Windows
+Thumbs.db
+Desktop.ini
